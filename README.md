@@ -36,6 +36,9 @@ aims to deliver a user-friendly tool for exploring crime statistics.
   - Hyperlinks via a Table of Contents (TOC) sheet to jump between raw data, cleaned data, analysis, and dashboard.
 - **Optional VBA**: Macro to refresh all pivot tables with a button click.
 
+## Progress Log
+- **Day 1 (2025-04-01)**: Initialized repository, imported raw crime data into Excel as 'Raw Data' sheet.
+
 ## Key Insights
 - Highest crime area: Southwest (based on initial analysis).
 - Most common crime: Battery - Simple Assault.
