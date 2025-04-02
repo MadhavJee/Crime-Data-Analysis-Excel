@@ -12,32 +12,43 @@ aims to deliver a user-friendly tool for exploring crime statistics.
 ## Dataset
 - **Scope**: Crime incidents in Los Angeles reported in 2020.
 - **Key Columns**:
-  - 'DR_NO': Incident ID
-  - 'DATE OCC': Date of occurrence
-  - 'AREA NAME: Geographic area (e.g., Southwest, Hollywood)
-  - 'Crm Cd Desc: Crime description (e.g., Robbery, Battery)
-  - 'Vict Age, 'Vict Sex', 'Vict Descent': Victim demographics
-  - 'Weapon Desc': Weapon used
-  - 'Premis Desc': Location of crime
-  - 'LAT', 'LON': Geographic coordinates
+  - `DR_NO`: Incident ID
+  - `DATE OCC`: Date of occurrence
+  - `AREA NAME`: Geographic area (e.g., Southwest, Hollywood)
+  - `Crm Cd Desc`: Crime description (e.g., Robbery, Battery)
+  - `Vict Age`, `Vict Sex`, `Vict Descent`: Victim demographics
+  - `Weapon Desc`: Weapon used
+  - `Premis Desc`: Location of crime
+  - `LAT`, `LON`: Geographic coordinates
 
 ## Features
 - **Data Cleaning**:
-  - Standardized dates ('DATE OCC') and times ('TIME OCC').
-  - Handled missing values: 'Vict Age' (0 or blank) replaced with "N/A".
+  - Standardized dates (`DATE OCC`) and times ('TIME OCC').
+  - Handled missing values: `Vict Age` (0 or blank) replaced with "N/A".
 - **Analyses**:
   - Crime frequency by area, crime type, and time (day/hour).
   - Victim demographics (age groups, sex).
   - Premises and weapons used in crimes.
 - **Interactive Dashboard**:
-  - Slicers for filtering by 'AREA NAME', 'Crm Cd Desc', 'Vict Sex', and 'Date Occurred'.
+  - Slicers for filtering by `AREA NAME`, `Crm Cd Desc`, `Vict Sex`, and `Date Occurred`.
   - Charts: Bar (area-wise crimes), Pie (crime types), Histogram (victim age), Line (hourly trends).
 - **Navigation**:
   - Hyperlinks via a Table of Contents (TOC) sheet to jump between raw data, cleaned data, analysis, and dashboard.
 - **Optional VBA**: Macro to refresh all pivot tables with a button click.
 
 ## Progress Log
-- **Day 1 (2025-04-01)**: Initialized repository, imported raw crime data into Excel as 'Raw Data' sheet.
+- **Day 1 (2025-04-02)**: Initialized repository, imported raw crime data into Excel as 'Raw Data' sheet.
+- **Day 2 (2025-04-02)**: Cleaned the dataset in a new `Cleaned Data` sheet to prepare it for analysis. Steps included:
+  - Copied all data from `Raw Data` to `Cleaned Data` for processing.
+  - Standardized `DATE OCC` (column C) into a `Date Occurred` column using `=DATEVALUE(LEFT(C2,10))` to extract the date (e.g., "2020-01-01") from the full timestamp (e.g., "2020-01-01 12:30:00"), formatted as 
+    MM/DD/YYYY.
+  - Converted `TIME OCC` (column D) from numeric format (e.g., 1340 for 1:40 PM) to a `Time Occurred` column with `=TIME(INT(D2/100),MOD(D2,100),0)`, formatted as HH:MM AM/PM for time-based analysis.
+  - Handled missing values:
+    - `Vict Age` (column L): Added `Cleaned Vict Age` (column M) with `=IF(OR(L2=0,L2=""),"N/A",L2)` to replace 0 or blank entries with "N/A", preserving valid ages (e.g., 23, 55).
+    - `Vict Sex` (column M): Added `Cleaned Vict Sex` (column N) with `=IF(M2="X","Unknown",M2)` to replace "X" (unknown) with "Unknown", keeping "M" or "F" as-is.
+    - `Vict Descent` (column N): Added `Cleaned Vict Descent` (column O) with `=IF(N2="X","Unknown",N2)` to mark "X" as "Unknown", retaining valid descent codes (e.g., "H", "W").
+  - Formatted the cleaned dataset as an Excel table named `CrimeData` (Ctrl+T) to enable dynamic referencing for pivot tables and slicers.
+  - Verified data integrity by filtering for "N/A" and "Unknown" values to ensure proper handling of missing entries.
 
 ## Key Insights
 - Highest crime area: Southwest (based on initial analysis).
