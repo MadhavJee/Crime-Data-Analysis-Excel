@@ -49,7 +49,25 @@ aims to deliver a user-friendly tool for exploring crime statistics.
     - `Vict Descent` (column N): Added `Cleaned Vict Descent` (column O) with `=IF(N2="X","Unknown",N2)` to mark "X" as "Unknown", retaining valid descent codes (e.g., "H", "W").
   - Formatted the cleaned dataset as an Excel table named `CrimeData` (Ctrl+T) to enable dynamic referencing for pivot tables and slicers.
   - Verified data integrity by filtering for "N/A" and "Unknown" values to ensure proper handling of missing entries.
-
+- **Day 3 (2025-04-03)**: Enhanced `Analysis` sheet in `la_crime_insights_dashboard.xlsx` with 6 pivot tables and charts for valuable dashboard insights. Steps included:
+  - Added pivot tables:
+    - **Crime by Area**: Rows = `AREA NAME`, Values = Count of `DR_NO` (A3).
+    - **Top 5 Crime Types**: Rows = `Crm Cd Desc`, Values = Count of `DR_NO`, filtered top 5 (G3).
+    - **Victim Age**: Rows = `Age Group` (helper column: `=IF(M2="N/A","Unknown",IF(M2<=18,"0-18",IF(M2<=30,"19-30",IF(M2<=50,"31-50","51+"))))`), Values = Count of `DR_NO` (M3).
+    - **Crime by Hour**: Rows = `Hour` (`=HOUR([@[Time Occurred]])`), Values = Count of `DR_NO` (S3).
+    - **Crime by Sex and Age**: Rows = `Age Group`, Columns = `Cleaned Vict Sex`, Values = Count of `DR_NO` (Y3).
+    - **Top 5 Weapons**: Rows = `Weapon Desc`, Values = Count of `DR_NO`, filtered top 5 (AE3).
+  - Created charts:
+    - Bar: “Crime Distribution by Area” (A25).
+    - Pie: “Top 5 Crime Types” (G25).
+    - Histogram: “Victim Age Distribution” (M25, Gap Width = 0%).
+    - Line: “Crime Trends by Hour of Day” (S25).
+    - Stacked Bar: “Crime by Victim Sex and Age Group” (Y25).
+    - Column: “Top 5 Weapons Used in Crimes” (AE25).
+  - Positioned charts below pivot tables for clarity.
+  - Updated the Excel file in the repository with these analyses.
+ 
+  
 ## Key Insights
 - Highest crime area: Southwest (based on initial analysis).
 - Most common crime: Battery - Simple Assault.
