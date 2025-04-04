@@ -37,8 +37,10 @@ aims to deliver a user-friendly tool for exploring crime statistics.
 - **Optional VBA**: Macro to refresh all pivot tables with a button click.
 
 ## Progress Log
-- **Day 1 (2025-04-02)**: Initialized repository, imported raw crime data into Excel as 'Raw Data' sheet.
-- **Day 2 (2025-04-02)**: Cleaned the dataset in a new `Cleaned Data` sheet to prepare it for analysis. Steps included:
+
+  **Day 1 (2025-04-02)**: Initialized repository, imported raw crime data into Excel as 'Raw Data' sheet.
+  
+  **Day 2 (2025-04-03)**: Cleaned the dataset in a new `Cleaned Data` sheet to prepare it for analysis. Steps included:
   - Copied all data from `Raw Data` to `Cleaned Data` for processing.
   - Standardized `DATE OCC` (column C) into a `Date Occurred` column using `=DATEVALUE(LEFT(C2,10))` to extract the date (e.g., "2020-01-01") from the full timestamp (e.g., "2020-01-01 12:30:00"), formatted as 
     MM/DD/YYYY.
@@ -49,7 +51,8 @@ aims to deliver a user-friendly tool for exploring crime statistics.
     - `Vict Descent` (column N): Added `Cleaned Vict Descent` (column O) with `=IF(N2="X","Unknown",N2)` to mark "X" as "Unknown", retaining valid descent codes (e.g., "H", "W").
   - Formatted the cleaned dataset as an Excel table named `CrimeData` (Ctrl+T) to enable dynamic referencing for pivot tables and slicers.
   - Verified data integrity by filtering for "N/A" and "Unknown" values to ensure proper handling of missing entries.
-- **Day 3 (2025-04-03)**: Enhanced `Analysis` sheet in `la_crime_insights_dashboard.xlsx` with 6 pivot tables and charts for valuable dashboard insights. Steps included:
+    
+  **Day 3 (2025-04-04)**: Enhanced `Analysis` sheet in `la_crime_insights_dashboard.xlsx` with 6 pivot tables and charts for valuable dashboard insights. Steps included:
   - Added pivot tables:
     - **Crime by Area**: Rows = `AREA NAME`, Values = Count of `DR_NO` (A3).
     - **Top 5 Crime Types**: Rows = `Crm Cd Desc`, Values = Count of `DR_NO`, filtered top 5 (G3).
@@ -66,7 +69,27 @@ aims to deliver a user-friendly tool for exploring crime statistics.
     - Column: “Top 5 Weapons Used in Crimes” (AE25).
   - Positioned charts below pivot tables for clarity.
   - Updated the Excel file in the repository with these analyses.
- 
+    
+   **Day 4 (2025-04-05)**: Created an interactive `Dashboard` sheet in `la_crime_insights_dashboard.xlsx` to visualize crime insights. Steps included:
+  - Added a new `Dashboard` sheet and copied 6 charts from `Analysis`:
+    - Bar: “Crime Distribution by Area” (B2).
+    - Pie: “Top 5 Crime Types” (H2).
+    - Histogram: “Victim Age Distribution” (B20) using `Age Group`.
+    - Line: “Crime Trends by Hour of Day” (H20).
+    - Stacked Bar: “Crime by Victim Sex and Age Group” (B38).
+    - Column: “Top 5 Weapons Used in Crimes” (H38).
+  - Added slicers for interactivity:
+    - Inserted slicers for `AREA NAME`, `Crm Cd Desc`, `Cleaned Vict Sex`, `Date Occurred`, `Weapon Desc`, and `Hour` (positioned at N2:N40).
+    - Connected slicers to all 6 pivot tables on `Analysis` (A3, G3, M3, S3, Y3, AE3) for dynamic filtering.
+    - Added `Weapon Desc` to analyze crime severity and weapon usage, enhancing the "Top 5 Weapons" chart; added `Hour` for granular time analysis, amplifying the "Crime Trends by Hour" chart.
+  - Included key metrics at the top:
+    - Total Crimes (C1): `=COUNT('Cleaned Data'!A:A)` for incident count.
+    - Most Common Crime (E1): `=INDEX('Cleaned Data'!D:D,MATCH(MAX(COUNTIF('Cleaned Data'!D:D,'Cleaned Data'!D:D)),COUNTIF('Cleaned Data'!D:D,'Cleaned Data'!D:D),0))` to identify the top crime type.
+  - Polished the layout:
+    - Added title “LA Crime Insights Dashboard” (A1, merged A1:G1, bold 16pt).
+    - Arranged charts in a 2x3 grid with slicers on the right and metrics above.
+    - Applied a consistent theme for visual appeal.
+  - Updated the Excel file in the repository with the enhanced dashboard.
   
 ## Key Insights
 - Highest crime area: Southwest (based on initial analysis).
