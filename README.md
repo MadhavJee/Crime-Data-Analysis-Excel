@@ -90,6 +90,36 @@ aims to deliver a user-friendly tool for exploring crime statistics.
     - Arranged charts in a 2x3 grid with slicers on the right and metrics above.
     - Applied a consistent theme for visual appeal.
   - Updated the Excel file in the repository with the enhanced dashboard.
+
+### Day 5 Progress: Dashboard Development
+- **Pivot Tables and Charts Created**:
+  1. **Crime by Area**: Rows = `AREA NAME`, Values = Count of `DR_NO` (Bar Chart).
+  2. **Crime by Time (Hours)**: Rows = `Hour`, Values = Count of `DR_NO` (Line Chart).
+  3. **Crime by Weapon**: Rows = `Weapon Desc`, Values = Count of `DR_NO` (Bar Chart).
+  4. **Crime by Description**: Rows = `Crm Cd Desc`, Values = Count of `DR_NO` (Pie Chart).
+  5. **Case Status by Area**: Rows = `AREA NAME`, Columns = `Status Desc`, Values = Count of `DR_NO` (Stacked Bar Chart).
+  6. **Crime by Age Group**: Rows = `Age Group` (0-15, 16-30, 31-45, 46-60, 60+), Values = Count of `DR_NO` (Histogram).
+  7. **Crime by Age Group & Sex**: Rows = `Age Group`, Columns = `Vict Sex`, Values = Count of `DR_NO` (Stacked Bar Chart).
+  8. **Heatmap: Crime by Area and Time of Day**: Rows = `AREA NAME`, Columns = `Time Slot` (6-hour bins), Values = Count of `DR_NO` (Excel Conditional Formatting in `heatmap.xlsx`).
+
+- **Dashboard Features**:
+  - **Charts Included**: 7 of 8 (all except Heatmap) in `dashboard.xlsx`:
+    - Crime by Area (B2)
+    - Crime by Time (H20)
+    - Crime by Weapon (H38)
+    - Crime by Description (H2)
+    - Case Status by Area (B38)
+    - Crime by Age Group (B20)
+    - Crime by Age Group & Sex (Y25)
+  - **Slicers**:
+    - `AREA NAME`: Filter by area (e.g., "Southeast").
+    - `Date`: Filter by date range.
+    - `Vict Gender`: Filter by gender (M, F, Unknown).
+  - **Hyperlinks**: Added clickable navigation to:
+    - Dashboard (internal sheet or `dashboard.xlsx`).
+    - Heatmap (`heatmap.xlsx`).
+    - Dataset (`data/Crime_Data_from_2020_to_Present.csv`).
+    - Website ([data.lacity.org](https://data.lacity.org)).
   
 ## Key Insights
 - Highest crime area: Southwest (based on initial analysis).
